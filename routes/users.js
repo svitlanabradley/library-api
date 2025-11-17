@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users');
+const validateUser = require('../middleware/validateUser');
 
 /**
  * @swagger
@@ -64,7 +65,7 @@ const usersController = require('../controllers/users');
  */
 
 router.get('/', usersController.getAll);
-router.post('/', usersController.createUser);
+router.post('/', validateUser, usersController.createUser);
 
 /**
  * @swagger
@@ -141,7 +142,7 @@ router.post('/', usersController.createUser);
  *         description: User not found
  */
 router.get('/:id', usersController.getSingle);
-router.put('/:id', usersController.updateUser);
+router.put('/:id', validateUser, usersController.updateUser);
 router.delete('/:id', usersController.deleteUser);
 
 module.exports = router;

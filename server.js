@@ -32,22 +32,10 @@ app.use((req, res, next) => {
 });
 
 app.use(cors({ methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'] }))
-app.use(cors({ origin: 'http://localhost:8080', credentials: true }))
+app.use(cors({ origin: 'https://library-api-gmet.onrender.com', credentials: true }))
 
 app.use("/", require("./routes/index.js"))
 
-
-// // Routs swagger
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
-
-// // Rotes users
-// app.use('/users', usersRoutes);
-
-// // Routes books
-// app.use('/books', booksRoutes);
-
-// // // Routs authentication
-// // app.use('/authentication', authentication)
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
